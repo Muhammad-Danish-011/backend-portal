@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const AuthRouter = require('./Routes/AuthRouter');
-const carRoutes = require('./Routes/carRoutes');  // Import carRoutes
+const carRoutes = require('./Routes/Routes');  // Import carRoutes
 
 require('dotenv').config();
 require('./Models/db');  // Connect to the database

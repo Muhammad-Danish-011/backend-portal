@@ -3,6 +3,11 @@ const express = require('express');
 const { getCars, createCar } = require('../Controllers/carController');
 const { ensureAuthenticated } = require('../Middlewares/ensureAuthenticated');
 const Car = require('../Models/carModel'); // Import your Car model
+const truckController = require("../Controllers/truckController");
+const {
+    getHeavyMachinery,
+    createHeavyMachinery,
+  } = require("../Controllers/heavymachineryController");
 
 const router = express.Router();
 
@@ -31,5 +36,14 @@ router.get("/user", ensureAuthenticated, async (req, res) => {
         return res.status(500).json({ message: "Failed to fetch cars", error: err.message });
     }
 });
+
+//truck 
+router.get("/truck", truckController.getTrucks);
+router.post("/truck", truckController.createTruck);
+
+
+//heavy machinery
+router.get("/heavy", getHeavyMachinery);
+router.post("/heavy", createHeavyMachinery);
 
 module.exports = router;

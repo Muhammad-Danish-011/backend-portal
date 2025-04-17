@@ -68,7 +68,7 @@ const login = async (req, res) => {
   
   const generateAccessToken = (user) => {
     return jwt.sign(
-      { email: user.email, _id: user._id },
+      { email: user.email, _id: user._id ,      name: user.name,},
       process.env.JWT_SECRET, // Ensure the key exists in your .env
       { expiresIn: process.env.JWT_ACCESS_EXPIRY } // Ensure the expiry exists in your .env
     );
@@ -76,7 +76,7 @@ const login = async (req, res) => {
   
   const generateRefreshToken = (user) => {
     return jwt.sign(
-      { email: user.email, _id: user._id },
+      { email: user.email, _id: user._id,      name: user.name, },
       process.env.JWT_REFRESH_SECRET, // Ensure the key exists in your .env
       { expiresIn: process.env.JWT_REFRESH_EXPIRY } // Ensure the expiry exists in your .env
     );

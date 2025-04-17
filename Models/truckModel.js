@@ -1,0 +1,43 @@
+const mongoose = require("mongoose");
+
+const truckSchema = new mongoose.Schema({
+  listingTitle: String,
+  make: String,
+  model: String,
+  condition: String,
+  inventoryLocation: String,
+  transmission: String,
+  fuelType: String,
+  axleConfig: String,
+  hotLocation: String,
+  steering: String,
+  year: Number,
+  mileage: Number,
+  price: Number,
+  description: String,
+  category: String,
+  color: String,
+  engineSize: Number,
+  doors: Number,
+  seats: Number,
+  modelCode: String,
+  auctionGrade: String,
+  loadingCapacity: Number,
+  engineNumber: String,
+  chassisNo: String,
+  dimensionLength: Number,
+  dimensionWidth: Number,
+  dimensionHeight: Number,
+  carOptions: [String],
+  vin: String,
+  stockNumber: String,
+  dealerStock: Boolean,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  imageBase64: String,
+}, { timestamps: true });
+
+module.exports = mongoose.models.Truck || mongoose.model("Truck", truckSchema);

@@ -1,27 +1,68 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const carSchema = new mongoose.Schema({
-    modelName: { type: String, required: true },
+    listingTitle: {
+        type: String,
+        required: true,
+    },
+    dealerStock: {
+        type: Boolean,  // Should be a boolean for in-stock or not
+        required: false,
+        default: false,  // Default value to false if not provided
+    },
+    make: {
+        type: String,
+        required: true,
+    },
+    model: String,
+    condition: String,
+    inventoryLocation: String,
+    transmission: String,
+    fuelType: String,
+    drivetrain: String,
+    hotLocation: String,
+    steering: String,
+    color: String,
+    bodyType: String,
+    engineSize: {
+        type: Number,
+        required: true,
+    },
+    year: {
+        type: Number,
+        required: true,
+    },
+    price: {
+        type: Number,
+        required: true,
+    },
+    doors: {
+        type: Number,
+        required: true,
+    },
+    seats: {
+        type: Number,
+        required: true,
+    },
+    modelCode: String,
+    auctionGrade: String,
+    loadingCapacity: Number,
+    mileage: Number,
+    engineNumber: String,
+    chassisNo: String,
+    dimensionLength: Number,
+    dimensionWidth: Number,
+    dimensionHeight: Number,
+    carOptions: [String],  // Options like AC, Power Steering, etc.
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User', // Reference to User collection
+        required: true,
     },
-    transmission: { type: String, required: true },
-    fuelType: { type: String, required: true },
-    color: { type: String, required: true },
-    make: { type: String },
-    year: { type: String },
-    exportOption: { type: String },
-    registrationCity: { type: String },
-    vinNumber: { type: String },
-    numberOfDoors: { type: String },
-    engineSize: { type: String },
-    imageBase64: { type: String },  // <-- Yeh field add karo.
-        imageUrl: { type: String },
-    description: { type: String },
-    price: { type: String },
+    stockNumber: String,
+    vin: String,
+    imageBase64: String,
+    description: String,
 }, { timestamps: true });
 
-const Car = mongoose.model("Car", carSchema);
-
-module.exports = Car;
+module.exports = mongoose.models.Car || mongoose.model("Car", carSchema);

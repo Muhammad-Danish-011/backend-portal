@@ -99,11 +99,28 @@ const refreshToken = async (req, res) => {
   }
 };
 const generateAccessToken = (user) => {
-  return jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  return jwt.sign(
+    {
+      userId: user.userId,  
+      email: user.email,
+      name: user.name,     
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: '1d' }
+  );
 };
 
+
 const generateRefreshToken = (user) => {
-  return jwt.sign({ userId: user._id, email: user.email }, process.env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
+  return jwt.sign(
+    {
+      userId: user.userId,  
+      email: user.email,
+      name: user.name,
+    },
+    process.env.JWT_REFRESH_SECRET,
+    { expiresIn: '7d' }
+  );
 };
 
 
